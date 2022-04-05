@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private float x;
     // 움직이는 속도
     [SerializeField]
     private float moveSpeed;
+    private float defaultSpeed;
     // 캐릭터가 우측보는가
     private bool faceToRight = true;
     // 땅에 닿았는가
@@ -20,12 +22,20 @@ public class PlayerController : MonoBehaviour
     private float jumpForce;
     public int jumps;
 
-    //// 대쉬
-    //private I
+    // 대쉬
+    private bool isDash = true;
+    public float dashSpeed;
+    private float dashTime;
+    public float startDashTime;
+    private float dashDirection;
+    // 대쉬 지속시간
+    //public float defaultTime;
+    //private float dashTime;
    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dashTime = startDashTime;
     }
 
     private void FixedUpdate()
@@ -34,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
 
         // 가로 방향 이동
-        float x = Input.GetAxis("Horizontal");
+        x = Input.GetAxis("Horizontal");
         //float y = Input.GetAxis("Vertical");
 
         rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
@@ -57,12 +67,74 @@ public class PlayerController : MonoBehaviour
         {
             jumps =1;
         }
-
         if (Input.GetKeyDown(KeyCode.Space) && jumps > 0)
         {
-            rb.velocity = Vector2.up * jumpForce;
+            Jump();
             jumps--;
         }
+
+        // 좌측 Shift키를 누르면 대쉬
+        if ( dashDirection == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                if ( x < 0 )
+                {
+                    dashDirection = 1;
+                }
+                else if ( x > 0)
+                {
+                    dashDirection = 2;
+                }
+            }
+        }
+        else
+        {
+            if ( dashTime <= 0)
+            {
+                dashDirection = 0;
+                dashTime = startDashTime;
+                rb.velocity = Vector2.zero;
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+
+                if (dashDirection == 1)
+                {
+                    rb.velocity = Vector2.left * dashSpeed;
+                }
+                else if (dashDirection == 2)
+                {
+                    rb.velocity = Vector2.right * dashSpeed;
+                }
+            }
+        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    isDash = true;
+        //}
+        //if ( dashTime <= 0)
+        //{
+        //    //defaultSpeed = moveSpeed;
+        //    if ( isDash)
+        //    {
+        //        dashTime = defaultTime;
+        //    }
+        //    else
+        //    {
+        //        dashTime -= Time.deltaTime;
+        //        defaultSpeed = dashSpeed;
+        //    }
+        //    isDash = false;
+        //}
+
+    }
+
+    // 점프 메서드
+    void Jump()
+    {
+        rb.velocity = Vector2.up * jumpForce;
     }
 
     // 캐릭터가 왼쪽을 바라보게끔 만드는 메서드
