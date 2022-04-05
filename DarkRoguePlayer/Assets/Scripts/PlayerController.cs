@@ -40,8 +40,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 땅에 닿았는지 체크(플랫폼의 LayerMask를 Ground로 변경)
         isGround = Physics2D.OverlapCircle(groundCheck.position, checkRadious, whatIsGround);
-
 
         // 가로 방향 이동
         x = Input.GetAxis("Horizontal");
