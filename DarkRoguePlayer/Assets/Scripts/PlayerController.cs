@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
     private Rigidbody2D rb;
+    // 움직이는 속도
+    [SerializeField]
+    private float moveSpeed;
     // 캐릭터가 우측보는가
     private bool faceToRight = true;
     // 땅에 닿았는가
@@ -18,9 +19,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpForce;
     public int jumps;
-    
 
-
+    //// 대쉬
+    //private I
+   
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         //float y = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(x * speed, rb.velocity.y);
+        rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
 
         if (faceToRight == false && x > 0)
         {
@@ -49,14 +51,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // 땅에 닿았을 때는 점프 + 키보드 s키를 누르면 점프
+        // 땅에 닿았을 때 키보드 space키를 누르면 점프
         // S 버튼 & 최대 점프 횟수2
         if (isGround == true)
         {
-            jumps = 2;
+            jumps =1;
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && jumps > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && jumps > 0)
         {
             rb.velocity = Vector2.up * jumpForce;
             jumps--;
