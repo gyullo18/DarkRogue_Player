@@ -754,9 +754,6 @@ GameObject:
   - component: {fileID: 530291147}
   - component: {fileID: 530291146}
   - component: {fileID: 530291145}
-  - component: {fileID: 530291151}
-  - component: {fileID: 530291150}
-  - component: {fileID: 530291149}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -866,63 +863,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &530291149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530291144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34fd9e4b396af6c4e94a93cd71eda244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxJumps: 0
-  jumpForce: 0
-  maxButtonHoldTime: 0
-  holdForce: 0
-  distanceToCollider: 0
-  maxJumpSpeed: 0
-  maxFallSpeed: 0
-  fallSpeed: 0
-  gravityMultipler: 0
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &530291150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530291144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0389592b32039774dbaf1dd43bbe1c9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 500
-  distanceToCollider: 0.08
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 256
---- !u!114 &530291151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530291144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15fb217c0615af47bdec52515637e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFacingLeft: 0
-  isJumping: 0
-  spawnFacingLeft: 0
-  isGround: 0
 --- !u!1 &558961141
 GameObject:
   m_ObjectHideFlags: 0
